@@ -15,6 +15,8 @@ class ItemSearchBar extends Component
         $this->emit('updateSearchValue', $this->searchValue);
     }
 
+
+
     public function render()
     {
         return view('livewire.items.item-search-bar');

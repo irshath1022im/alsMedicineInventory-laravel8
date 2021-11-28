@@ -24,6 +24,11 @@ class Index extends Component
         $this->searchValue = $searchValue;
     }
 
+    public function updatedSearchValue()
+    {
+        $this->resetPage();
+    }
+
     public function updatedSelectedBatchNumber ()
     {
         $this->emit('selectedBatchNumber', $this->selectedBatchNumber);
