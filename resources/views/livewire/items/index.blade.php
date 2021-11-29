@@ -45,7 +45,9 @@
                             <span class="badge bg-info">{{ $item->batch_numbers_count }}</span>
                         </button></td>
                         <td>
-                            <button class="btn btn-sm btn-outline-secondary">View</button>
+                            <a href="{{ route('items.show', $item->id) }}">
+                                <button class="btn btn-sm btn-outline-secondary">View</button>
+                            </a>
                             <button class="btn btn-sm btn-outline-primary">Edit</button>
                             <button class="btn btn-sm btn-outline-danger">Delete</button>
                         </td>

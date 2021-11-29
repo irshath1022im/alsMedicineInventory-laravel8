@@ -23,9 +23,34 @@
     </head>
     <body class="container-fluid">
 
-        <div class="container-fluid bg-secondary p-2 text-white" role="alert">
-            <h4 class="text-center">ALS MEDICINE INVENTORY</h4>
-        </div>
+        <nav class="navbar navbar-expand-md navbar-dark bg-dark">
+            <div class="container-fluid">
+              <a class="navbar-brand" href="/">
+                ALS MEDICINE INVENTORY
+              </a>
+              <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNav" aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation">
+                <span class="navbar-toggler-icon"></span>
+              </button>
+
+              <div class="collapse navbar-collapse" id="navbarNav">
+                <ul class="navbar-nav">
+                  <li class="nav-item">
+                    <a class="nav-link " aria-current="page" href="/">HOME</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="{{  route('items.index') }}">ITEMS</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link" href="#">RECEIVING</a>
+                  </li>
+                  <li class="nav-item">
+                    <a class="nav-link disabled">CONSUMPTION</a>
+                  </li>
+                </ul>
+              </div>
+
+            </div>
+        </nav>
 
         <hr />
 

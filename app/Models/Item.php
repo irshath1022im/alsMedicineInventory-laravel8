@@ -11,6 +11,11 @@ class Item extends Model
 
     protected $fillable = ['name', 'thumbnail', 'erp_code', 'remark', 'category_id'];
 
+    public function category()
+    {
+        return $this->belongsTo(Category::class);
+    }
+
     public function receivings()
     {
         return $this->hasMany(ReceivingItem::class);

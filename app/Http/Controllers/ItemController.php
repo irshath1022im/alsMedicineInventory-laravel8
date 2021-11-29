@@ -2,8 +2,6 @@
 
 namespace App\Http\Controllers;
 
-use App\Http\Resources\ItemIndexResource;
-use App\Models\Item;
 use Illuminate\Http\Request;
 
 class ItemController extends Controller
@@ -52,6 +50,7 @@ class ItemController extends Controller
     public function show($id)
     {
         //
+        return view('items.show', ['id' => $id]);
     }
 
     /**
