@@ -21,7 +21,8 @@ class CreateReceivingItemsTable extends Migration
             $table->integer('qty');
             $table->decimal('unit_price', 8, 2);
             $table->decimal('cost', 8, 2);
-            $table->text('remark');
+            $table->text('remark')->nullable();
+
             $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('batch_number_id')->references('id')->on('batch_numbers');
             $table->foreign('receiving_id')->references('id')->on('receivings');

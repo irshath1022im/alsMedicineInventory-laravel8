@@ -1,7 +1,6 @@
 <div class="card">
    
     
-   
 
     <h4 class="card-header">New Badge </h4>
     <div class="card-body">

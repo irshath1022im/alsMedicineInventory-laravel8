@@ -18,8 +18,9 @@ class CreateBatchNumbersTable extends Migration
             $table->string('batch_number');
             $table->unsignedBigInteger('item_id');
             $table->date('expiry_date');
-            $table->integer('initial_qty');
-            $table->string('barcode');
+            $table->integer('initial_qty')->nullable();
+            $table->string('barcode')->nullable();
+            $table->string('status')->default('active');
             $table->foreign('item_id')->references('id')->on('items');
             $table->timestamps();
         });

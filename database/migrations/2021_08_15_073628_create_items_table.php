@@ -20,7 +20,6 @@ class CreateItemsTable extends Migration
             $table->unsignedBigInteger('category_id');
             $table->string('erp_code');
             $table->text('remark')->nullable();
-
             $table->foreign('category_id')->references('id')->on('categories');
             $table->timestamps();
         });

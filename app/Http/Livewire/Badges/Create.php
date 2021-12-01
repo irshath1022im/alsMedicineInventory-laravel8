@@ -17,6 +17,7 @@ class Create extends Component
     public $initial_qty=0;
     public $barcode;
 
+
     protected $listeners = ['updateSelectedItemId'];
 
     protected $rules = [
@@ -36,7 +37,9 @@ class Create extends Component
         $item = Item::where('id', $this->item_id)
                      ->get();
 
+
         $this->item_name = $item[0]['name'];
+
 
 
     }

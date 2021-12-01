@@ -17,10 +17,10 @@ class CreateReceivingsTable extends Migration
             $table->id();
             $table->date('date');
             $table->unsignedBigInteger('supplier_id');
-            $table->string('po');
-            $table->string('invoice_no');
-            $table->string('delivery_note');
-            $table->string('remark');
+            $table->string('po')->nullable();
+            $table->string('invoice_no')->nullable();
+            $table->string('delivery_note')->nullable();
+            $table->string('remark')->nullable();
             $table->timestamps();
             $table->foreign('supplier_id')->references('id')->on('suppliers');
         });

@@ -23,8 +23,8 @@ class CreateConsumptionsTable extends Migration
             $table->unsignedBigInteger('user_id');
 
             $table->foreign('location_id')->references('id')->on('locations');
-            $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('user_id')->references('id')->on('users');
+            $table->foreign('item_id')->references('id')->on('items');
             $table->foreign('batch_number_id')->references('id')->on('batch_numbers');
             $table->timestamps();
         });

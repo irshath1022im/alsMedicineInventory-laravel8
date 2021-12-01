@@ -10,7 +10,7 @@ class BatchNumber extends Model
 {
     use HasFactory;
 
-    protected $fillable = ['item_id', 'batch_number', 'expiry_date', 'initial_qty'];
+    protected $fillable = ['item_id', 'batch_number', 'expiry_date', 'initial_qty', 'status'];
 
 
     // public function getExpiryDateAttribute($value)
