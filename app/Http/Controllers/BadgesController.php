@@ -2,24 +2,18 @@
 
 namespace App\Http\Controllers;
 
-use App\Models\Category;
-use App\Models\Item;
 use Illuminate\Http\Request;
 
-class ItemController extends Controller
+class BadgesController extends Controller
 {
     /**
      * Display a listing of the resource.
      *
      * @return \Illuminate\Http\Response
      */
-    public function index(Request $request)
+    public function index()
     {
         //
-
-        // controlled by livewire
-
-        return view('items.index');
     }
 
     /**
@@ -30,8 +24,7 @@ class ItemController extends Controller
     public function create()
     {
         //
-        $categories = Category::get();
-        return view ('items.create',['categories' => $categories]);
+        return view ('badges.create');
     }
 
     /**
@@ -43,23 +36,18 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //
-        $validated = $request->validate([
-            'name' => 'required|unique:items,name',
-             'thumbnail'=>'',
-             'category_id' => 'required',
-             'erp_code' => 'required|unique:items,erp_code',
-            'remark' =>''
 
+        // dd($request->all());
+
+        $validated = $request->validate([
+            'item_id' => 'required',
+            'batch_number' => 'required|unique:batch_numbers,batch_number',
+            'expiry_date' => 'required',
+            'initial_qty' => '',
+            'barcode' => ''
         ]);
 
-        $result = Item::create($validated);
-
-        $request->session()->flash('success', 'New Item has been created!');
-
-        // return view('items.index');
-
-        return redirect()->route('items.show', ['item' => $result->id]);
-
+        return $validated;
 
     }
 
@@ -72,7 +60,6 @@ class ItemController extends Controller
     public function show($id)
     {
         //
-        return view('items.show', ['id' => $id]);
     }
 
     /**

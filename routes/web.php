@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\BadgesController;
 use App\Http\Controllers\ItemController;
 use Illuminate\Support\Facades\Route;
 
@@ -20,3 +21,4 @@ Route::get('/', function () {
 
 
 Route::resource('items', ItemController::class);
+Route::resource('badges', BadgesController::class);
