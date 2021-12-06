@@ -8,9 +8,11 @@
 
     <div class="card">
         <h4 class="card-header">ITEMS
-            <div class="spinner-border text-primary" role="status" wire:loading>
+            {{-- <div class="spinner-border text-primary" role="status" 
+            wire:loading
+            >
                 <span class="visually-hidden">Loading...</span>
-              </div>
+              </div> --}}
 
         </h4>
         <div class="card-body">
@@ -48,7 +50,9 @@
                             <a href="{{ route('items.show', $item->id) }}">
                                 <button class="btn btn-sm btn-outline-secondary">View</button>
                             </a>
-                            <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            <a href="{{  route('items.edit', ['item'=>$item->id]) }}">
+                                <button class="btn btn-sm btn-outline-primary">Edit</button>
+                            </a>
                             <button class="btn btn-sm btn-outline-danger">Delete</button>
                         </td>
                     </tr>
@@ -60,7 +64,6 @@
             {{  $items->links() }}
 
             @livewire('badges')
-
 
         </div>
     </div>

@@ -19,6 +19,7 @@ class ShowBadgesByItemId extends Component
     {
 
         $result = BatchNumber::where('item_id', $this->item_id)
+                                ->with('receiving_items', 'consumptions')
                             ->simplePaginate(5);
 
         return view('livewire.badges.show-badges-by-item-id', ['badge_numbers' => $result]);

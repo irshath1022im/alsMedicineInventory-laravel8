@@ -42,6 +42,12 @@ class Index extends Component
 
     }
 
+    // public function showBootstrapModal()
+    // {
+    //     $this->dispatchBrowserEvent('openModal');
+       
+    // }
+
 
 
     public function render()

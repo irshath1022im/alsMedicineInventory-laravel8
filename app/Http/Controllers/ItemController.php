@@ -30,8 +30,8 @@ class ItemController extends Controller
     public function create()
     {
         //
-        $categories = Category::get();
-        return view ('items.create',['categories' => $categories]);
+        // $categories = Category::get();
+        return view ('items.create');
     }
 
     /**
@@ -43,22 +43,22 @@ class ItemController extends Controller
     public function store(Request $request)
     {
         //
-        $validated = $request->validate([
-            'name' => 'required|unique:items,name',
-             'thumbnail'=>'',
-             'category_id' => 'required',
-             'erp_code' => 'required|unique:items,erp_code',
-            'remark' =>''
+        // $validated = $request->validate([
+        //     'name' => 'required|unique:items,name',
+        //      'thumbnail'=>'',
+        //      'category_id' => 'required',
+        //      'erp_code' => 'required|unique:items,erp_code',
+        //     'remark' =>''
 
-        ]);
+        // ]);
 
-        $result = Item::create($validated);
+        // $result = Item::create($validated);
 
-        $request->session()->flash('success', 'New Item has been created!');
+        // $request->session()->flash('success', 'New Item has been created!');
 
-        // return view('items.index');
+        // // return view('items.index');
 
-        return redirect()->route('items.show', ['item' => $result->id]);
+        // return redirect()->route('items.show', ['item' => $result->id]);
 
 
     }
@@ -84,6 +84,9 @@ class ItemController extends Controller
     public function edit($id)
     {
         //
+        $item = Item::findOrFail($id);
+        // $categories = Category::get();
+        return view ('items.create',['item' => $item]);
     }
 
     /**
@@ -96,6 +99,7 @@ class ItemController extends Controller
     public function update(Request $request, $id)
     {
         //
+        dd($request->all());
     }
 
     /**

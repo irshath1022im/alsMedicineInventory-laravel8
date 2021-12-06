@@ -55,23 +55,28 @@
         <hr />
 
         @yield('content')
-
+        
+        @livewireScripts
 
         <script>
-          window.addEventListener('openBadgesModal', ()=>{
-            var myModal = document.getElementById('badgesModal')
-            var modal = new bootstrap.Modal.getInstance('badgesModal')
+          // window.addEventListener('openModal', ()=>{
+          //   var myModal = document.getElementById('openModal')
+         
+          //   console.log(myModal);
 
-            console.log(modal);
+          //   myModal.setAttribute('data-bs-toggle', 'modal')
+          //   myModal.setAttribute('data-bs-target', "#exampleModal")
+          //   console.dir(myModal);
 
             // console.dir(myModal)
+        // var myModal = document.getElementById('exampleModal')
 
 
-
-          })
+        //     Livewire.on('showBootstrapModal', () => {
+        //         $(myModal).modal('show');
+        //       });
         </script>
 
-@livewireScripts
 
     </body>
 </html>
