@@ -5,12 +5,8 @@
 
 @section('content')
 
-@if (session()->has('success'))
-            <div class="alert alert-success" role="alert">
-                <strong>{{ session('success') }}</strong>
-            </div>
-            
-        @endif
+    @component('components.alert-success')               
+    @endcomponent
 
     @livewire('items.show', ['item_id' => $id])
 

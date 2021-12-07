@@ -1,20 +1,26 @@
 <div class="card">
-   
-    
 
-    <h4 class="card-header">New Badge </h4>
+    @component('components.alert-success')
+        
+    @endcomponent
+
+    <h4 class="card-header">Badge # - {{ $selectedBadgeNumber }}
+        <div class="spinner-border text-primary" role="status" wire:loading>
+            <span class="visually-hidden">Loading...</span>
+          </div>
+    </h4>
     <div class="card-body">
-        <form wire:submit.prevent = "formHandle">
+        <form>
             @csrf
             <div class="mb-3">
                 <label for="" class="form-label">Item Name</label>
                 <input type="text" class="form-control" disabled name="item_name" placeholder="{{ $item_name }}"  >
-                <input type="text" class="form-control"  disabled name="item_id" placeholder="{{ $item_id }}"  >
+                <input type="text" class="form-control"  disabled name="item_id" placeholder="{{ $erp_code }}"  >
 
                 @error('item_id')
-                    @component('components.alert', ['message' => $message])
-                        
-                    @endcomponent
+                <div class="alert alert-danger">
+                    {{ $message }}
+                </div>
                 @enderror
 
             </div>
@@ -23,16 +29,18 @@
               <label for="" class="form-label">Badge No</label>
               <input type="text"
                 class="form-control" name="batch_number" id="" aria-describedby="helpId" placeholder=""
-                    wire:model="batch_number"
+                    wire:model.defer="batch_number"
                     value="{{ old('batch_number') }}"
+                 
+                   
                 >
                 
               
                 @error('batch_number')
-                 @component('components.alert', ['message' => $message])
-                    
-                @endcomponent
-            @enderror
+                    <div class="alert alert-danger">
+                        {{ $message }}
+                    </div>
+                @enderror
 
 
             </div>
@@ -42,13 +50,13 @@
                 <input type="date"
                   class="form-control" name="expiry_date" id="" aria-describedby="helpId" placeholder=""
                      value="{{ old('expiry_date') }}"
-                     wire:model="expiry_date"
+                     wire:model.defer="expiry_date"
                   >
                 
                   @error('expiry_date')
-                      @component('components.alert', ['message' => $message])
-                          
-                      @endcomponent
+                  <div class="alert alert-danger">
+                    {{ $message }}
+                    </div>
                   @enderror
 
               </div>
@@ -58,10 +66,8 @@
                 <input type="number"
                   class="form-control" name="initial_qty" id="" aria-describedby="helpId" placeholder=""
                   value="{{ old('initial_qty') }}"
-                  wire:model="initial_qty"
+                  wire:model.defer="initial_qty"
                   >
-                
-
               </div>
 
               <div class="mb-3">
@@ -69,12 +75,43 @@
                 <input type="text"
                   class="form-control" name="barcode" id="" aria-describedby="helpId" placeholder=""
                   value="{{ old('barcode') }}"
-                  wire:model="barcode"
+                  wire:model.defer="barcode"
                   >
                
               </div>
 
-              <button class="btn btn-dark">Submit</button>
+              <div class="mb-3">
+                <label for="" class="form-label">Status</label>
+                <select class="form-control" name="status" id="" wire:model.defer="status">
+                  <option value="">Select</option>
+                  <option value="active">Active</option>
+                  <option value="closed">Closed</option>
+                  <option value="stored">Stored</option>
+                </select>
+              </div>
+
+
+              @error('status')
+              <div class="alert alert-danger">
+                {{ $message }}
+            </div>
+              @enderror
+
+              
+              @switch($mode)
+                  @case('new')
+                  <button type="button" class="btn btn-dark" wire:click="formHandleForNew">ADD</button>
+                      @break
+                  @case('edit')
+                  <button type="button" class="btn btn-dark" 
+                    wire:click="formHandleForEdit"
+                    >Update</button>
+                      @break
+                  @default
+                      
+              @endswitch
+          
+            
 
         </form>
 

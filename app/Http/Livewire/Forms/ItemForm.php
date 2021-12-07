@@ -38,13 +38,13 @@ class ItemForm extends Component
 
     public function save()
     {
-        $this->resetErrorBag();
+        $this->resetValidation();
         
         $this->validate();
 
         $validatedData = [
             'name' => $this->item_name,
-            // 'category_id' => $this->category_id,
+            'category_id' => $this->category_id,
             'erp_code' => $this->erp_code
         ];
        
@@ -55,9 +55,9 @@ class ItemForm extends Component
             $this->addError('sql', 'SQL ERROR!!!');
         }
 
-        $this->resetErrorBag();
-        $this->formReset();       
-        session()->flash('success', 'New Item has been created! , Item Id => '.$result->id.' ');
+        // $this->resetErrorBag();
+        // $this->formReset();       
+        session()->flash('success', 'New Item has been created!');
         return redirect()->route('items.show', ['item' => $result->id]);
 
     }

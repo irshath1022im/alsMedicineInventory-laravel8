@@ -1,17 +1,12 @@
         <div class="card">
 
           
-            @if ($errors->has('sql'))
-              <p>test</p>
-            @endif
-
-
-                @if (session()->has('success'))
-                    <div class="alert alert-success" role="alert">
-                        <strong>{{ session('success') }}</strong>
-                    </div>
+          
+                    @component('components.alert-success')
+                        
+                    @endcomponent
                 
-                 @endif
+                
 
                 <h4 class="card-header">NEW ITEM</h4>
 
@@ -56,7 +51,7 @@
 
                         <div class="mb-3">
                               <label for="" class="form-label">Category</label>
-                              <select class="form-control" name="category_id" id="" wire:model="category_id">
+                              <select class="form-control" name="category_id" id="" wire:model.defer="category_id">
                                 <option value="">Select</option>
 
                                 @foreach ($categories as $category)
@@ -76,7 +71,7 @@
                         <div class="mb-3">
                             <label for="" class="form-label">Thumbnail</label>
                                 <input type="file" name="thumbnail" id="" class="form-control"  aria-describedby="helpId"
-                                    wire:model="thumbnail"
+                                    wire:model.defer="thumbnail"
                                 >
                             <small id="helpId" class="text-muted">Help text</small>
                         </div>
@@ -84,7 +79,7 @@
                         <div class="mb-3">
                           <label for="" class="form-label">Remark</label>
                           <input class="form-control" name="remark" id="" 
-                            wire:model="remark"
+                            wire:model.defer="remark"
                           />
                         </div>
 

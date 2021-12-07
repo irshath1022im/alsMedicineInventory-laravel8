@@ -17,11 +17,11 @@
                           <option></option>
                         </select>
 
-                        @error('item_id')
+                        {{-- @error('item_id')
                             @component('components.alert', ['message' => $message])
                                 
                             @endcomponent
-                        @enderror
+                        @enderror --}}
 
                     </div>
 

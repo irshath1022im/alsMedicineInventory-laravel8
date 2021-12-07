@@ -14,6 +14,13 @@ class ShowBadgesByItemId extends Component
     use WithPagination;
 
     protected $paginationTheme = 'bootstrap';
+    protected $listeners = ['badgeModalCloseRequest'];
+
+
+    public function badgeModalCloseRequest()
+    {
+        
+    }
 
     public function render()
     {
