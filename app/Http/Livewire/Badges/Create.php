@@ -40,6 +40,7 @@ class Create extends Component
     public function selectedItemId($item_id)
     {
         $this->reset('batch_number', 'initial_qty', 'expiry_date','erp_code','status','item_id');
+        $this->resetValidation();
         $this->mode = 'new';
         $this->item_id = $item_id;
         $this->selectedBadgeNumber = 'New';
