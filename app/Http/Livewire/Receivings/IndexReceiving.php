@@ -12,7 +12,7 @@ class IndexReceiving extends Component
     public $active_receiving=0;
 
     use WithPagination;
-    protected $paginationTheme = 'Bootstrap';
+    protected $paginationTheme = 'bootstrap';
 
     protected $listeners = ['receivingSuccess'];
 
