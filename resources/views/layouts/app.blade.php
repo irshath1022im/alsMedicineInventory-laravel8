@@ -41,7 +41,7 @@
                     <a class="nav-link" href="{{  route('items.index') }}">ITEMS</a>
                   </li>
                   <li class="nav-item">
-                    <a class="nav-link" href="#">RECEIVING</a>
+                    <a class="nav-link" href="{{  route('receivings') }}">RECEIVING</a>
                   </li>
                   <li class="nav-item">
                     <a class="nav-link disabled">CONSUMPTION</a>
@@ -55,6 +55,8 @@
         <hr />
 
         @yield('content')
+
+        {{-- {{ $slot }} --}}
         
         @livewireScripts
 
