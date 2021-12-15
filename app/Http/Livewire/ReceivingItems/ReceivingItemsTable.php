@@ -36,7 +36,7 @@ class ReceivingItemsTable extends Component
         return view('livewire.receiving-items.receiving-items-table',[
                 'receiving_items' => $this->readyToLoad ? 
                             ReceivingItem::where('receiving_id', $this->receiving_id)
-                                        ->with('item', 'receiving', 'batch_number')    
+                                        ->with('item', 'batch_number')    
                                         ->get()
                             :
                             []

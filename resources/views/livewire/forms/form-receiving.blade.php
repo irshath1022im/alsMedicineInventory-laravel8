@@ -2,6 +2,8 @@
     @component('components.alert-success')
     @endcomponent
 
+    {{-- @dump($suppliers) --}}
+
     <div wire:loading>
         @component('components.spinner')
             
@@ -27,8 +29,13 @@
             <div class="col-sm col-md-6 mb-3">
                   <select class="form-control" name="Supplier" wire:model.defer="supplier_id">
                     <option value="">Supllier</option>
-                    <option value="1">Supplier-1</option>
-                    <option value="2">Supplier-2</option>
+
+                    @foreach ($suppliers as $supplier)
+                    
+                        <option value="{{ $supplier->id }}">{{ $supplier->name }}</option>
+
+                    @endforeach
+
                   </select>
 
                   @error('supplier_id')

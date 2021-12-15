@@ -4,48 +4,86 @@
         
     @endcomponent
 
-    <div wire:loading>
+    {{-- <div wire:loading wire.target="">
         @component('components.spinner')
             
         @endcomponent
-    </div>
+    </div> --}}
 
-    <form wire:loading.remove>
+    <form>
 
         <div class="row">
-            <div class="col mb-3">
-            <label for="" class="form-label">Items</label>
-            <input type="text" name="item" id="" class="form-control" 
-                placeholder="Item Name"
-                wire:model.defer= 'item_id'
-            >
 
-            @error('item_id')
-                
-                <strong class="text-danger">{{ $message }}</strong>
-            @enderror
+            <div class="col mb-3">
+                <label for="" class="form-label">Items</label>
+                <input type="text"
+                class="form-control border border-success" placeholder="Search"
+                    wire:model.debounce.500ms="searchValue"
+                >
+
+                <div wire:loading wire.target="searchResult">
+                    @component('components.spinner')
+                        
+                    @endcomponent
+                  </div>
+            
+            
+                  @empty(!$searchResult)
+            
+                            <div>
+                                <ul class="list-group">
+            
+                                        @foreach ($searchResult as $item)
+                                                <li class="list-group-item">
+                                                    <div class="form-check">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" wire:click="itemIdUpdate({{ $item }})">
+                                                        <label class="form-check-label" for="flexRadioDefault1">
+                                                        {{ $item->name }}
+                                                        </label>
+                                                    </div> 
+                                                </li>
+                                        @endforeach
+            
+                                </ul>
+                            </div>
+            
+                    @endempty
+          
+
+                    {{-- @error('item_id')
+                        
+                        <strong class="text-danger">{{ $message }}</strong>
+                    @enderror --}}
+
+                    {{-- @livewire('items.item-search-bar') --}}
             </div>
 
             <div class="col mb-3">
-            <label for="" class="form-label">Badge Number</label>
-            <select class="form-control" name="batch_number_id" id=""
-                wire:model.defer="batch_number_id"
-            >
-                <option value="">Select</option>
-                @foreach ($batch_numbers as $batch_number)
-                <option value="{{ $batch_number['id'] }}">{{ $batch_number['batch_number'] }}</option>
-                @endforeach
-                
-            </select>
-            @error('batch_number_id')
-                
-                <strong class="text-danger">{{ $message }}</strong>
-            @enderror
+
+                <label for="" class="form-label">Badge Number</label>
+                <select class="form-control" name="batch_number_id" id=""
+                    wire:model.defer="batch_number_id"
+                >
+                    <option value="">Select</option>
+
+
+
+                    @foreach ($batch_numbers as $batch_number)
+                    <option value="{{ $batch_number['id'] }}">{{ $batch_number['batch_number'] }}</option>
+                    @endforeach
+                    
+                </select>
+
+                @error('batch_number_id')
+                    
+                    <strong class="text-danger">{{ $message }}</strong>
+                @enderror
             </div>
 
         </div>
 
         <div class="row">
+
                 <div class="col mb-3">
                   <label for="" class="form-label">Qty</label>
                   <input type="number"
@@ -96,7 +134,6 @@
 
                 </div>
 
-
         <div class="row">
             <div class="mb-3">
               <label for="" class="form-label">Remark</label>
@@ -109,8 +146,6 @@
         <button type="button" class="btn btn-primary" 
             wire:click="NewReceivingItemFormHandle"
         >Submit</button>
-
-
 
     </form>
 </div>

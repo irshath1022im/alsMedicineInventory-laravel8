@@ -25,7 +25,7 @@ class IndexReceiving extends Component
     public function render()
     {
 
-        $result = Receiving::withCount('receiving_items')->paginate(10);
+        $result = Receiving::withCount('receiving_items')->with('supplier')->paginate(10);
 
         return view('livewire.receivings.index-receiving',['receivings' => $result])
                     ->extends('layouts.app');

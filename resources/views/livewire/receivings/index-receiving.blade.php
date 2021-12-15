@@ -47,7 +47,7 @@
                             <td scope="row">{{ $receiving->id }}</td>
                         </a>
                         <td>{{ $receiving->date }}</td>
-                        <td>{{ $receiving->supplier_id }}</td>
+                        <td>{{ $receiving->supplier->name }}</td>
                         <td>{{ $receiving->po }}</td>
                         <td>{{ $receiving->invoice_no }}</td>
                         <td>{{ $receiving->delivery_note }}</td>

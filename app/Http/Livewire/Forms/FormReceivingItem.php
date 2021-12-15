@@ -2,6 +2,8 @@
 
 namespace App\Http\Livewire\Forms;
 
+use App\Models\BatchNumber;
+use App\Models\Item;
 use App\Models\ReceivingItem;
 use Livewire\Component;
 
@@ -16,12 +18,18 @@ class FormReceivingItem extends Component
     public $cost;
     public $expiry_date;
     public $remark;
-    public $batch_numbers=[
-        ['id' => 1, 'batch_number' => 45789],
-        ['id' => 2, 'batch_number' => 23658]
-    ];
+    public $batch_numbers=[];
+    public $batch_numbers2;
 
-    protected $listeners = ['openAddReceivingItemModal'];
+    public $searchValue;
+    public $searchResult;
+    public $selectedItemId;
+    public $selectedItemName;
+
+    protected $listeners = [
+        'openAddReceivingItemModal', 
+        'sendSelectedItem' => 'receiveSelectedItemFromSearchBar'
+    ];
 
 
     protected $rules = [
@@ -61,8 +69,9 @@ class FormReceivingItem extends Component
 
 
         if($result) {
-            $this->reset();
+            $this->resetExcept('receiving_id');
             $this->resetValidation();
+            $this->emit('refreshReceivingItem');
             session()->flash('success', 'New Receiving Item has been added !');
 
         }
@@ -72,7 +81,44 @@ class FormReceivingItem extends Component
 
     }
 
+    
    
+    public function updatedSearchValue()
+    {
+        // $this->emit('updateSearchValue', $this->searchValue);
+        
+        if(!empty($this->searchValue)) {
+            
+                    $this->searchResult = Item::
+                                when($this->searchValue, function($query){
+                                return $query
+                                        ->where('name', 'like', $this->searchValue.  '%')
+                                        ->orWhere('erp_code', 'like', $this->searchValue. '%');
+                                    })
+                            ->take(3)
+                            ->get();
+
+        }else {
+            $this->searchResult=[];
+        }
+
+
+    }
+
+
+    public function itemIdUpdate($item)
+    {
+        $this->item_id = $item['id'];
+        $this->batch_numbers = BatchNumber::where('item_id', $this->item_id)->get();
+        $this->searchValue = $item['name'];
+        $this->searchResult = [];
+    }
+
+
+    // public function updatedItemId()
+    // {
+        
+    // }
 
     public function render()
     {

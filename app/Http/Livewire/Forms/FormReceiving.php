@@ -3,6 +3,7 @@
 namespace App\Http\Livewire\Forms;
 
 use App\Models\Receiving;
+use App\Models\Supplier;
 use Livewire\Component;
 
 class FormReceiving extends Component
@@ -15,7 +16,7 @@ class FormReceiving extends Component
     public $invoice_no;
     public $remark;
     public $mode;
-
+    public $suppliers;
 
     public $receiving_id;
 
@@ -33,6 +34,7 @@ class FormReceiving extends Component
     public function receivingModalOpen($receiving_id)
     {
         
+
         $this->receiving_id = $receiving_id;
 
         if($receiving_id > 0) {
@@ -48,8 +50,10 @@ class FormReceiving extends Component
             $this->remark = $result->remark;
 
         } else {
-            $this->reset();
+            $this->resetExcept('suppliers');
             $this->mode = 'create';
+           
+            
         }
 
     }
@@ -92,11 +96,13 @@ class FormReceiving extends Component
 
     }
 
+    
     public function mount()
     {
-       
+        $this->suppliers = Supplier::get();
     }
 
+    
 
     public function render()
     {

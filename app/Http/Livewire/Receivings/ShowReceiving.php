@@ -13,10 +13,10 @@ class ShowReceiving extends Component
 
     
    
-    public function NewReceivingItemModalClose()
-    {
-        $this->emit('refreshReceivingItem');
-    }
+    // public function NewReceivingItemModalClose()
+    // {
+    //     $this->emit('refreshReceivingItem');
+    // }
 
 
   
@@ -31,7 +31,8 @@ class ShowReceiving extends Component
     public function render()
     {
 
-        $result = Receiving::withCount('receiving_items')->with('supplier', 'receiving_items')->find($this->receiving_id);
+        $result = Receiving::withCount('receiving_items')
+                            ->with('supplier')->find($this->receiving_id);
 
         return view('livewire.receivings.show-receiving',[
                     'receiving' => $result
