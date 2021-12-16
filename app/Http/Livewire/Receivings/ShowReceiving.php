@@ -10,13 +10,13 @@ class ShowReceiving extends Component
     public $receiving_id;
 
    
-
+    protected $listeners = ['refreshReceivingItem'];
     
    
-    // public function NewReceivingItemModalClose()
-    // {
-    //     $this->emit('refreshReceivingItem');
-    // }
+    public function refreshReceivingItem()
+    {
+      
+    }
 
 
   
