@@ -15,9 +15,15 @@
                     <div class="col-sm col-md">Invoice # {{ $receiving->invoice_no }}</div>
                     <div class="col-sm col-md">Delivery Note: {{ $receiving->delivery_note }}</div>
                     <div class="col-sm col-md" >Items
-                        <button class="btn">
+                        <button class="btn" wire:loading.remove>
                             <span class="badge bg-primary">{{ $receiving->receiving_items_count }}</span>
                         </button>
+
+                        <div wire:loading>
+                            @component('components.spinner')
+                                
+                            @endcomponent
+                        </div>
                     </div>
                 </div>
 
@@ -69,18 +75,18 @@
 
 
 <!-- Modal -->
-<div class="modal fade" id="receivingItemsModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true">
+<div class="modal fade" id="receivingItemsModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true"  >
     <div class="modal-dialog" role="document">
         <div class="modal-content">
             <div class="modal-header">
                 <h5 class="modal-title">RECEIVING ITEMS</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" ></button>
+                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="$emit('refreshReceivingItem')" ></button>
             </div>
             <div class="modal-body">
                 @livewire('forms.form-receiving-item')
             </div>
             <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" >Close</button>
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="$emit('refreshReceivingItem')" >Close</button>
             </div>
         </div>
     </div>

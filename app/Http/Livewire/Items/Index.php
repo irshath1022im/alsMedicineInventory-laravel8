@@ -17,17 +17,24 @@ class Index extends Component
 
     protected $paginationTheme = 'bootstrap';
 
-    protected $listeners = ['updateSearchValue' => 'searchValueUpdate' ]; // listen to change search value changes
+    protected $listeners = [
+            'sendSelectedItem' => 'searchValueUpdate', // listen to emit function from item-search-bar
+            'resetSearchValue'
+        ]; 
 
     public function searchValueUpdate($searchValue)
     {
+        $this->resetPage();
         $this->searchValue = $searchValue;
     }
 
-    public function updatedSearchValue()
+    public function resetSearchValue($searchValue)
     {
         $this->resetPage();
+        $this->searchValue = $searchValue;
     }
+
+   
 
     public function updatedSelectedBatchNumber ()
     {
@@ -55,8 +62,7 @@ class Index extends Component
         $result = Item::withCount('batch_numbers')
                 ->when($this->searchValue, function($query){
                     return $query
-                            ->where('name', 'like', $this->searchValue. '%')
-                            ->orWhere('erp_code', 'like', $this->searchValue. '%')
+                            ->where('id', $this->searchValue)
                             ;
                 })
                 ->paginate(10)

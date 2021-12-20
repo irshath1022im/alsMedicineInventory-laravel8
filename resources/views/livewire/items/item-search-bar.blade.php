@@ -4,7 +4,7 @@
           wire:model.debounce.500ms="searchValue"
       >
 
-      @dump($selectedItemId)
+      {{-- @dump($selectedItemId) --}}
 
       <div wire:loading>
         @component('components.spinner')
@@ -21,7 +21,8 @@
                             @foreach ($searchResult as $item)
                                     <li class="list-group-item">
                                         <div class="form-check">
-                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" wire:click="$emit('sendSelectedItem', {{ $item->id }})">
+                                            <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" 
+                                            wire:click="$emit('sendSelectedItem', {{ $item->id }})">
                                             <label class="form-check-label" for="flexRadioDefault1">
                                             {{ $item->name }}
                                             </label>

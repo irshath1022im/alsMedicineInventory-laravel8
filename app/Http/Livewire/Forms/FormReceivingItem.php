@@ -19,7 +19,6 @@ class FormReceivingItem extends Component
     public $expiry_date;
     public $remark;
     public $batch_numbers=[];
-    public $batch_numbers2;
 
     public $searchValue;
     public $searchResult;
@@ -28,7 +27,6 @@ class FormReceivingItem extends Component
 
     protected $listeners = [
         'openAddReceivingItemModal', 
-        'sendSelectedItem' => 'receiveSelectedItemFromSearchBar'
     ];
 
 
@@ -43,11 +41,15 @@ class FormReceivingItem extends Component
         'remark' => ''
     ];
 
+
     public function openAddReceivingItemModal($id)
     {
         $this->receiving_id = $id;
+        $this->resetExcept('receiving_id');
         $this->resetValidation();
     }
+
+ 
 
     public function NewReceivingItemFormHandle()
     {
@@ -71,7 +73,6 @@ class FormReceivingItem extends Component
         if($result) {
             $this->resetExcept('receiving_id');
             $this->resetValidation();
-            $this->emit('refreshReceivingItem');
             session()->flash('success', 'New Receiving Item has been added !');
 
         }
@@ -100,6 +101,7 @@ class FormReceivingItem extends Component
 
         }else {
             $this->searchResult=[];
+            $this->batch_numbers = [];
         }
 
 

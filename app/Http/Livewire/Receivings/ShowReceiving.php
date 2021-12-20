@@ -18,9 +18,6 @@ class ShowReceiving extends Component
       
     }
 
-
-  
-
     public function mount($id)
     {
         $this->receiving_id = $id;
@@ -39,4 +36,6 @@ class ShowReceiving extends Component
                     ])
                  ->extends('layouts.app');
     }
+
+    
 }

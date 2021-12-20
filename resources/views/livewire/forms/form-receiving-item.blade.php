@@ -50,10 +50,10 @@
                     @endempty
           
 
-                    {{-- @error('item_id')
+                    @error('item_id')
                         
                         <strong class="text-danger">{{ $message }}</strong>
-                    @enderror --}}
+                    @enderror
 
                     {{-- @livewire('items.item-search-bar') --}}
             </div>
