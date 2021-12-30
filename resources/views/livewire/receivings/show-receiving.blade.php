@@ -26,31 +26,12 @@
                         </div>
                     </div>
                 </div>
-
-                @if ($receiving->receiving_items_count > 0)
-                    
-                            @livewire('receiving-items.receiving-items-table', ['receiving_id' => $receiving_id])
-
-                    @else
-
-                    <div class="alert alert-danger">
-                        <strong>Sorry!, No Receiving Items are Found</strong>
-                    </div>
-
-                   
-                    
-                @endif
-
-
-                {{-- data-bs-toggle="modal" data-bs-target="#modalFormReceiving"
-                    wire:click="$emit('receivingModalOpen', {{ 0 }})" --}}
                 
-                    <img src="{{ asset('images/icons/plus-square-fill.svg') }}" 
-                        wire:click="$emit('openAddReceivingItemModal', {{ $receiving_id }})"  
-                        data-bs-toggle="modal" data-bs-target="#receivingItemsModal"
-                    >
-                
-    
+
+            @livewire('receiving-items.receiving-items-table', [
+                    'receiving_id' => $receiving_id,
+                    'receiving_items_count' => $receiving->receiving_items_count
+                    ])
 
 
 
@@ -69,33 +50,6 @@
     
 
     @endisset
-
-
-
-
-
-<!-- Modal -->
-<div class="modal fade" id="receivingItemsModal" tabindex="-1" role="dialog" aria-labelledby="modelTitleId" aria-hidden="true"  >
-    <div class="modal-dialog" role="document">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title">RECEIVING ITEMS</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close" wire:click="$emit('refreshReceivingItem')" ></button>
-            </div>
-            <div class="modal-body">
-                @livewire('forms.form-receiving-item')
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal" wire:click="$emit('refreshReceivingItem')" >Close</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-
-
-
-
 
 
 </div>

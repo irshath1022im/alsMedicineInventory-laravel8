@@ -10,6 +10,8 @@
         @endcomponent
     </div> --}}
 
+    {{-- @dump($editId) --}}
+
     <form>
 
         <div class="row">
@@ -36,7 +38,8 @@
                                         @foreach ($searchResult as $item)
                                                 <li class="list-group-item">
                                                     <div class="form-check">
-                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" wire:click="itemIdUpdate({{ $item }})">
+                                                        <input class="form-check-input" type="radio" name="flexRadioDefault" id="flexRadioDefault1" 
+                                                        wire:click="itemIdUpdate({{ $item }})">
                                                         <label class="form-check-label" for="flexRadioDefault1">
                                                         {{ $item->name }}
                                                         </label>
@@ -55,21 +58,20 @@
                         <strong class="text-danger">{{ $message }}</strong>
                     @enderror
 
-                    {{-- @livewire('items.item-search-bar') --}}
             </div>
 
             <div class="col mb-3">
 
                 <label for="" class="form-label">Badge Number</label>
+
                 <select class="form-control" name="batch_number_id" id=""
-                    wire:model.defer="batch_number_id"
+                    wire:model="batch_number_id"
                 >
                     <option value="">Select</option>
 
-
-
                     @foreach ($batch_numbers as $batch_number)
-                    <option value="{{ $batch_number['id'] }}">{{ $batch_number['batch_number'] }}</option>
+                        <option value="{{ $batch_number['id'] }}"
+                        >{{ $batch_number['batch_number'] }}</option>
                     @endforeach
                     
                 </select>
@@ -78,6 +80,19 @@
                     
                     <strong class="text-danger">{{ $message }}</strong>
                 @enderror
+            </div>
+
+            <div class="col mb-3">
+                <label for="" class="form-label">Expiry Date</label>
+                <input type="date"
+                class="form-control" name="expiry_date" id=""  disabled
+                    wire:model.defer="expiry_date"
+                >
+                @error('expiry_date')
+            
+                <strong class="text-danger">{{ $message }}</strong>
+                @enderror
+
             </div>
 
         </div>
@@ -121,18 +136,7 @@
                  @enderror
                 </div>
 
-                <div class="col mb-3">
-                    <label for="" class="form-label">Expiry Date</label>
-                    <input type="date"
-                    class="form-control" name="expiry_date" id="" 
-                        wire:model.defer="expiry_date"
-                    >
-                    @error('expiry_date')
-                
-                    <strong class="text-danger">{{ $message }}</strong>
-                    @enderror
-
-                </div>
+             
 
         <div class="row">
             <div class="mb-3">
@@ -143,9 +147,20 @@
             </div>
         </div>
 
-        <button type="button" class="btn btn-primary" 
+
+        @if ($editMode)
+            
+            <button type="button" class="btn btn-sm btn-primary" 
+                wire:click="ReceivingItemUpdate"
+            >Edit</button>
+        @else
+        
+        <button type="button" class="btn btn-sm btn-primary" 
             wire:click="NewReceivingItemFormHandle"
         >Submit</button>
+        @endif
+
+
 
     </form>
 </div>

@@ -15,7 +15,9 @@
                                     <button class="nav-link active " id="badges-tab" data-bs-toggle="tab" data-bs-target="#badges" type="button" role="tab" aria-controls="badges" aria-selected="true">BADGES</button>
                                 </li>
                                 
-                                <li class="nav-item" role="presentation">
+                                <li class="nav-item" role="presentation"   
+                                    {{-- wire:click="$emit('itemReceivingsRequest', {{ $item_id }})" --}}
+                                >     
                                     <button class="nav-link  " id="home-tab" data-bs-toggle="tab" data-bs-target="#home" type="button" role="tab" aria-controls="home" aria-selected="true">RECEIVING</button>
                                 </li>
                                 <li class="nav-item" role="presentation">
@@ -24,21 +26,17 @@
                             </ul>
 
                             <div class="tab-content" id="myTabContent">
-                                <div class="tab-pane fade show active" id="badges" role="tabpanel" aria-labelledby="badges-tab">
-                                  
+                                <div class="tab-pane fade show active" id="badges" role="tabpanel" aria-labelledby="badges-tab">          
                                     @livewire('badges.show-badges-by-item-id', ['item_id' => $item_id])
-
                                 </div>
 
-                                <div class="tab-pane fade show " id="home" role="tabpanel" aria-labelledby="home-tab">
-                                  
+                                <div class="tab-pane fade show " id="home" role="tabpanel" aria-labelledby="home-tab" >
+                                                            
                                     @livewire('shared.item-receivings', ['item_id' => $item_id])
                                 </div>
 
-                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">
-                                
-                                    @livewire('shared.item-consumptions',  ['item_id' => $item_id])
-                                
+                                <div class="tab-pane fade" id="profile" role="tabpanel" aria-labelledby="profile-tab">                            
+                                    @livewire('shared.item-consumptions',  ['item_id' => $item_id])                               
                                 </div>
                             </div>
 

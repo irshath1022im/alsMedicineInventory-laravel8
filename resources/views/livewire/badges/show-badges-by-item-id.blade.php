@@ -15,7 +15,7 @@
                 <th>CONSUMPTONS</th>
                 <th>STOCK</th>
                 <th>EXPIRY DATE</th>
-                <th></th>
+                <th>STATUS</th>
             </tr>
         </thead>
         <tbody>
@@ -28,7 +28,7 @@
                 <td>{{ $item->consumptions->sum('qty') }}</td>
                 <td>{{ ( $item->initial_qty + $item->receiving_items->sum('qty') ) -                $item->consumptions->sum('qty') }}</td>
                 <td>{{ $item->expiry_date }}</td>
-                <td>{{ $item->expiry_date }}</td>
+                <td>{{ $item->status }}</td>
                 <td class="d-flex justify-content-between">
                     <button class="btn btn-sm btn-outline-danger"
                         wire:click="$emit('editBadgeNumber', {{ $item->id }})"
