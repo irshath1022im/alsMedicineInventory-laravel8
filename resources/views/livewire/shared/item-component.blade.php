@@ -6,10 +6,10 @@
 
     {{-- @dump($item) --}}
     <img class="card-img-top" src="{{ asset('images/medicine.jpg') }}" alt="item_cover">
-    <button  class="btn btn-success position-absolute top-0 end-0">
+    {{-- <button  class="btn btn-success position-absolute top-0 end-0">
         InStock
         <span class="badge rounded-pill bg-danger">455</span>
-    </button>
+    </button> --}}
 
     
 

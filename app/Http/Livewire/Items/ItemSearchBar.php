@@ -27,7 +27,7 @@ class ItemSearchBar extends Component
                                                 ->where('name', 'like', $this->searchValue.  '%')
                                                 ->orWhere('erp_code', 'like', $this->searchValue. '%');
                                             })
-                            ->take(3)
+                            ->take(5)
                             ->get();
 
         }else {

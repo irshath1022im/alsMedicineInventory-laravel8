@@ -15,7 +15,7 @@ class FormReceivingItem extends Component
     public $item_id;
     public $batch_number_id;
     public $qty;
-    public $unit_price=0;
+    public $unit_price;
     public $cost;
     public $expiry_date;
     public $remark;
@@ -46,6 +46,17 @@ class FormReceivingItem extends Component
         'remark' => 'required',
         'remark' => '',
     ];
+
+
+    public function updatedUnitPrice()
+    {
+        $this->cost = $this->qty * $this->unit_price;
+    }
+
+    public function updatedQty()
+    {
+        $this->cost = $this->qty * $this->unit_price;
+    }
 
 
     public function openAddReceivingItemModal($id)

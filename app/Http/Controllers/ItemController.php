@@ -72,6 +72,8 @@ class ItemController extends Controller
     public function show($id)
     {
         //
+        
+
         return view('items.show', ['id' => $id]);
     }
 

@@ -102,8 +102,8 @@
                 <div class="col mb-3">
                   <label for="" class="form-label">Qty</label>
                   <input type="number"
-                    class="form-control" name="qty" id="" placeholder=""
-                    wire:model.defer="qty"
+                    class="form-control" name="qty" id="" placeholder="Qty"
+                    wire:model.lazy="qty"
                     >
                     @error('qty')
                 
@@ -115,7 +115,7 @@
                     <label for="" class="form-label">U Price</label>
                     <input type="number"
                     class="form-control" name="unit_price" id="" placeholder="Unit Price"
-                    wire:model.defer="unit_price"
+                    wire:model="unit_price"
                     >
                     @error('unit_price')
                 
@@ -150,12 +150,12 @@
 
         @if ($editMode)
             
-            <button type="button" class="btn btn-sm btn-primary" 
+            <button type="button" class="btn btn-outline-danger" 
                 wire:click="ReceivingItemUpdate"
-            >Edit</button>
+            >UPDATE</button>
         @else
         
-        <button type="button" class="btn btn-sm btn-primary" 
+        <button type="button" class="btn  btn-success" 
             wire:click="NewReceivingItemFormHandle"
         >Submit</button>
         @endif
