@@ -6,7 +6,6 @@ use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Validation\Rule;
 use Livewire\Component;
-use PhpParser\Node\Stmt\TryCatch;
 
 class ItemForm extends Component
 {
