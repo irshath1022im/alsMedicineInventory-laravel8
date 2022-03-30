@@ -25,9 +25,9 @@ class FormReceiving extends Component
     protected $rules =[
         'date' => 'required',
         'supplier_id' => 'required',
-        'po' => 'required',
-        'delivery_note' => 'required',
-        'invoice_no' => 'required',
+        'po' => '',
+        'delivery_note' => '',
+        'invoice_no' => '',
         'remark' => ''
     ];
 
