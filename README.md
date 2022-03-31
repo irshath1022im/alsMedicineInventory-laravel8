@@ -11,5 +11,6 @@
     Removed the Validation
 
 ## ISSUE #5
-
+    we need to setup auto create a badnumber for when ever we create a consumable items
+        badge : na , expiry date: 31/12/2025
 
