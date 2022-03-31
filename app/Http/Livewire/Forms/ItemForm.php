@@ -2,6 +2,7 @@
 
 namespace App\Http\Livewire\Forms;
 
+use App\Models\BatchNumber;
 use App\Models\Category;
 use App\Models\Item;
 use Illuminate\Validation\Rule;
@@ -24,7 +25,7 @@ class ItemForm extends Component
              'item_name' => "required|unique:items,name",
              'thumbnail'=>'',
              'category_id' => 'required',
-             'erp_code' => 'required|unique:items,erp_code',
+             'erp_code' => 'required',
              'remark' =>''
 
     ];
@@ -56,7 +57,21 @@ class ItemForm extends Component
         }
 
         // $this->resetErrorBag();
-        // $this->formReset();       
+        // $this->formReset();
+        
+        if($result->category_id !== "1") {
+            BatchNumber::create([
+                'item_id' => $result->id,
+                'batch_number' => 'NA',
+                'expiry_date' => '2025-12-31',
+                'initial_qty' => 0,
+                'status' => 'active',
+                'barcode' => ''
+            ]);
+        }
+
+        // dump($result);
+      
         session()->flash('success', 'New Item has been created!');
         return redirect()->route('items.show', ['item' => $result->id]);
 
@@ -69,7 +84,8 @@ class ItemForm extends Component
         // $this->validate();
         $this->validate([
             'item_name' => Rule::unique('items', 'name')->ignore($this->editItemId),
-            'erp_code' => Rule::unique('items', 'erp_code')->ignore($this->editItemId),
+            // 'erp_code' => Rule::unique('items', 'erp_code')->ignore($this->editItemId),
+            'erp_code' => 'required',
         ]);
 
         $validatedData = [

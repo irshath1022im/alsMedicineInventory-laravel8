@@ -68,13 +68,13 @@
                               @enderror
                         </div>
 
-                        <div class="mb-3">
+                        {{-- <div class="mb-3">
                             <label for="" class="form-label">Thumbnail</label>
                                 <input type="file" name="thumbnail" id="" class="form-control"  aria-describedby="helpId"
                                     wire:model.defer="thumbnail"
                                 >
                             <small id="helpId" class="text-muted">Help text</small>
-                        </div>
+                        </div> --}}
 
                         <div class="mb-3">
                           <label for="" class="form-label">Remark</label>
@@ -83,13 +83,13 @@
                           />
                         </div>
 
-                            @isset($editItemId)
+                        @isset($editItemId)
                                 <button type="button" class="btn btn-dark" wire:click="itemUpdate">UPDATE</button>
                             
                                 @else 
 
                                 <button type="button" class="btn btn-dark" wire:click="save">SAVE</button>
-                            @endisset
+                        @endisset
 
 
 

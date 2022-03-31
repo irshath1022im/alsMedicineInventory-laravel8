@@ -14,3 +14,6 @@
     we need to setup auto create a badnumber for when ever we create a consumable items
         badge : na , expiry date: 31/12/2025
 
+    * remove the thumbnail option from item form
+    * remove the erp code validation, accept the duplication erp code
+
